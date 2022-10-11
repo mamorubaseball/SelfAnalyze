@@ -1,7 +1,8 @@
+from dataclasses import field
 import email
 from unicodedata import name
 from rest_framework import serializers
-from google_app.models import User
+from google_app.models import User,LifeExpectancy
 
 #Json形式のフォーマットに変換してくれる。
 class UserSerializer(serializers.ModelSerializer):
@@ -37,4 +38,19 @@ class UserSerializer(serializers.ModelSerializer):
         instance.data = validated_data["data"],
         instance.save()
         return instance
+
+class LifeSeializer(serializers.ModelSerializer):
+    class Meta:
+        model = LifeExpectancy
+        fields ='__all__'
+
+    def create(self,validated_data):
+        newVendor = LifeExpectancy.objects.create(
+        year = validated_data["year"],
+        old_list_men = validated_data["old_list_men"],
+        old_list_women = validated_data["old_list_women"],
+    )
+        newVendor.save()
+        return newVendor
+
 

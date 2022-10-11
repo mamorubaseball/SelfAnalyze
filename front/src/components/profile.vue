@@ -31,6 +31,9 @@ export default {
       profile: {},
       selected:[],
       datalist: [],
+      life_women:{},
+      life_men:{},
+
     };
   },
   methods: {
@@ -41,9 +44,16 @@ export default {
         this.datalist = Object.keys(data.data);
       });
     },
+    getLifeExpectancy(){
+        let endpoint = "http://127.0.0.1:8000/api/lifeexpectancy/";
+      apiService(endpoint).then((data) => {
+        console.log(typeof(data.results[0].old_list_men))
+      });
+    }
   },
   created() {
     this.getProfileData();
+    this.getLifeExpectancy()
     console.log(this.profile);
   },
 };
