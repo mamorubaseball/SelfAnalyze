@@ -112,16 +112,20 @@ class IndexView(TemplateView):
     def post(self,request):
         if request.POST:
             lists = get_time()
-        # print(lists)
+            print(type(lists))
+            if lists:
+                calender_list = [k for k,v in lists.items()]
+        print(calender_list)
         #apiに追加する処理
         validate_data = {
             "name":"kazuya",
             "email":"kazuya@gmail.com",
             "old":23,
             "sex":"男",
-            "data":lists,           
+            "data":lists,
+            "datalist":{},
             }
-
+        print(validate_data)
         #apiデータ追加その1
         # user = UserSerializer(data = json.dumps(validate_data))
         # user.save()

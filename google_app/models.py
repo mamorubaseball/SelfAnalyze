@@ -2,7 +2,7 @@ from calendar import calendar
 from distutils.command.upload import upload
 from django.db import models
 # from django.contrib.postgres.fields import JSONField
-from django_mysql.models import ListCharField
+# from django_mysql.models import ListCharField
 
 # Create your models here.
 class User(models.Model):
@@ -12,8 +12,8 @@ class User(models.Model):
     old = models.IntegerField(default = 0)
     sex = models.CharField(default = "mamoru",max_length=10)
     data = models.JSONField(default = {"name":"mamoru"})
-    calendar_list = ListCharField(models.CharField(max_length=10),size=6, max_length=(6 * 11))
-
+    datalist = models.JSONField(default = {"list":["list"]})
+    # calendarlist = ListCharField(models.CharField(max_length=15),size=10, max_length=(15*11))
 
     class Meta:
        app_label = 'google_app'
