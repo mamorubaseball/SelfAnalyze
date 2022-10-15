@@ -1,0 +1,19 @@
+{% load render_bundle from webpack_loader %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title></title>
+    <!-- <link rel="stylesheet" href='{% static "google_app/css/style.css" %}'/> -->
+
+</head>
+<body>
+
+<div id="app" ref="{{USERID}}"></div>
+{% render_bundle 'app'  %}
+ <p> ログアウトは
+ <a href="{% url 'google_app:Logout' %}">こちら</a>
+ </p>
+</body>
+</html>
