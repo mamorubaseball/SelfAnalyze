@@ -9,11 +9,12 @@
 
 </head>
 <body>
-
-<div id="app" ref="{{USERID}}"></div>
+<div id="app"></div>
+<p> ログアウトは<a href="{% url 'google_app:Logout' %}">こちら</a>
 {% render_bundle 'app'  %}
- <p> ログアウトは
- <a href="{% url 'google_app:Logout' %}">こちら</a>
  </p>
+
+ <!-- refer to JS that was compiled by Laravel Mix -->
+<!-- <script type="text/javascript" src="{% static 'build/google_app.js' %}"></script> -->
 </body>
 </html>

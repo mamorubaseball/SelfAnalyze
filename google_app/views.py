@@ -183,7 +183,7 @@ def Login(request):
                 # ログイン
                 login(request,user)
                 # ホームページ遷移
-                return HttpResponseRedirect(reverse('google_app:home'))
+                return HttpResponseRedirect(reverse('google_app:home',kwargs={'pk':id}))
             else:
                 # アカウント利用不可
                 return HttpResponse("アカウントが有効ではありません")
@@ -205,8 +205,9 @@ def Logout(request):
 
 #ホーム
 @login_required
-def home(request):
+def home(request,pk):
     params = {"UserID":request.user,}
+    print(request.user)
     return render(request, "home.html",context=params)
 
 #新規登録

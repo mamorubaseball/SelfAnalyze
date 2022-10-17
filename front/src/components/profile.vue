@@ -24,8 +24,10 @@
 import { apiService } from "../../common/api.service";
 
 export default {
-  name: "profile",
-  props: {},
+  name: "profile-vue",
+  props: {
+    userId:String,
+  },
   data() {
     return {
       profile: {},
@@ -35,11 +37,12 @@ export default {
       datalist: [],
       life_women:{},
       life_men:{},
+      login:false,
     };
   },
   methods: {
     getProfileData() {
-      let endpoint = "http://127.0.0.1:8000/api/user/4";
+      let endpoint = "http://127.0.0.1:8000/api/user/"+this.$route.params.id;
       apiService(endpoint).then((data) => {
         this.profile = data.data[0];
         this.old = data.old;
@@ -53,12 +56,19 @@ export default {
       apiService(endpoint).then((data) => {
         console.log(data)
       });
-    }
+    },
+    // checkLoggedIn() {
+    //   this.$session.start();
+    //   if (this.$session.has("token")) {
+    //       this.login = true;
+    //       console.log(this.$session)
+    //       console.log('login',this.login)
+    //   }}
   },
   created() {
     this.getProfileData();
-    this.getLifeExpectancy()
-    console.log(this.profile);
+    this.getLifeExpectancy();
+    console.log("props_id",this.$route.params.id)
   },
 };
 </script>

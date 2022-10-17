@@ -6,9 +6,10 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/home",
+    path: "/home/:id",
     name: "Home",
-    component: Home
+    component: Home,
+    props: (route) => ({userId: Number(route.params.id)}),
   },
   {
     path: "/login",
