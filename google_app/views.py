@@ -207,7 +207,6 @@ def Logout(request):
 @login_required
 def home(request,pk):
     params = {"UserID":request.user,}
-    print(request.user)
     return render(request, "home.html",context=params)
 
 #新規登録
