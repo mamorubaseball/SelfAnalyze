@@ -84,9 +84,16 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
 # Password validation
+# https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
+PASSWORD_HASHERS = [
+    "django.contrib.auth.hashers.Argon2PasswordHasher",
+    "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
+    "django.contrib.auth.hashers.BCryptPasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
+]
+
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -95,6 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS':{"min_length":6}, #最小6桁のパスワードのみ登録許可
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -103,6 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
 
 
 # Internationalization
@@ -146,6 +155,8 @@ WEBPACK_LOADER = {
 }
 
 
+
+
 # cors設定
 # MIDDLEWARE内に’corsheaders.middleware.CorsMiddleware’を追加する
 # 新たにCORS_ORIGIN_WHITELIST変数を記述して、その中にアクセスを許可したいURL（アクセス元）を追加する
@@ -154,3 +165,17 @@ CORS_ORIGIN_WHITELIST = [
      "http://localhost:8080",
 
 ]
+
+# ログイン機能(JWT設定)
+# import datetime
+# JWT_AUTH = {
+#     'JWT_VERIFY': True,
+#     'JWT_VERIFY_EXPIRATION': True,
+#     'JWT_LEEWAY': 0,
+#     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=86400),
+#     'JWT_ALLOW_REFRESH': True,
+#     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
+# }
+
+
+

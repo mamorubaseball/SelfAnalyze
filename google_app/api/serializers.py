@@ -2,12 +2,12 @@ from dataclasses import field
 import email
 from unicodedata import name
 from rest_framework import serializers
-from google_app.models import User,LifeExpectancy
+from google_app.models import Accounts,LifeExpectancy
 
 #Json形式のフォーマットに変換してくれる。
-class UserSerializer(serializers.ModelSerializer):
+class AccountsSerializer(serializers.ModelSerializer):
     class Meta:
-        model=User
+        model=Accounts
         fields='__all__'
         # json で出力するフィールドを指定することも可能
         # fields = ('id','user_name', 'birth_day','age','created_at')
@@ -18,7 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     #パターン2
     def create(self, validated_data):
-        newVendor = User.objects.create(
+        newVendor = Accounts.objects.create(
         name = validated_data["name"],
         email = validated_data["email"],
         old = validated_data["old"],
@@ -31,10 +31,6 @@ class UserSerializer(serializers.ModelSerializer):
     #updateメソッドをオーバーライド
     #PUTリクエストを可能にする
     def update(self, instance, validated_data):
-        instance.name = str(validated_data["name"]),
-        instance.email = str(validated_data["email"]),
-        instance.old =int(validated_data["old"]),
-        instance.sex = str(validated_data["sex"]),
         instance.data = validated_data["data"],
         instance.save()
         return instance

@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+# from rest_framework_jwt.views import obtain_jwt_token # 追加
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('auth/', obtain_jwt_token), # 追加(ログイン認証)
     path('api/', include('google_app.api.urls')),
     path("", include('google_app.urls')), # 追加
-    
 ]

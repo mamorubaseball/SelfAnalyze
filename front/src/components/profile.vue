@@ -2,9 +2,9 @@
   <div class="profile">
     <img :src="require('@/assets/mamoru.png')" class="profile-card-image" />
     <div class="profile-card-desc">
-      <p>{{ profile.name }}</p>
-      <p>{{ profile.sex }}</p>
-      <p>{{ profile.old }}</p>
+
+      <p>{{ sex }}</p>
+      <p>{{ old }}</p>
       <h1>残りの人生</h1>
       <h2>59年1ヶ月10日</h2>
       <h2>21280日</h2>
@@ -24,37 +24,51 @@
 import { apiService } from "../../common/api.service";
 
 export default {
-  name: "profile",
-  props: {},
+  name: "profile-vue",
+  props: {
+    userId:String,
+  },
   data() {
     return {
       profile: {},
+      sex:"",
+      old:0,
       selected:[],
       datalist: [],
       life_women:{},
       life_men:{},
-
+      login:false,
     };
   },
   methods: {
     getProfileData() {
-      let endpoint = "http://127.0.0.1:8000/api/googleCalender/13";
+      let endpoint = "http://127.0.0.1:8000/api/user/"+this.$route.params.id;
       apiService(endpoint).then((data) => {
-        this.profile = data.data;
-        this.datalist = Object.keys(data.data);
+        this.profile = data.data[0];
+        this.old = data.old;
+        this.sex = data.sex;
+        console.log(data.data)
+        this.datalist = Object.keys(data.data[0]);
       });
     },
     getLifeExpectancy(){
         let endpoint = "http://127.0.0.1:8000/api/lifeexpectancy/";
       apiService(endpoint).then((data) => {
-        console.log(typeof(data.results[0].old_list_men))
+        console.log(data)
       });
-    }
+    },
+    // checkLoggedIn() {
+    //   this.$session.start();
+    //   if (this.$session.has("token")) {
+    //       this.login = true;
+    //       console.log(this.$session)
+    //       console.log('login',this.login)
+    //   }}
   },
   created() {
     this.getProfileData();
-    this.getLifeExpectancy()
-    console.log(this.profile);
+    this.getLifeExpectancy();
+    console.log("props_id",this.$route.params.id)
   },
 };
 </script>
