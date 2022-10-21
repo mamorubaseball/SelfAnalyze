@@ -10,21 +10,35 @@
       <h2>21280日</h2>
       <h1>今月使った時間</h1>
       <v-select
-        v-model="selected"
-        :items="datalist"
+        v-model="selectedMonth"
+        :items="month"
+        label="月"
+        outlined
+      ></v-select>
+
+      <v-select
+        v-model="selectedCalenderName"
+        :items="calenderName"
         label="カレンダーの種類を選択"
         outlined
       ></v-select>
-      {{ profile[selected] }}h
+
+      <pie-chart></pie-chart>
+      <p>{{ selectedCalenderName }}に使った時間</p>
+      {{ profile[selectedMonth][selectedCalenderName]}}h
       <!-- {{ selected }} -->
     </div>
   </div>
 </template>
 <script>
 import { apiService } from "../../common/api.service";
+// import { PieChart } from './charts.vue';
 
 export default {
   name: "profile-vue",
+  components: { 
+    // PieChart
+  },
   props: {
     userId:String,
   },
@@ -33,8 +47,10 @@ export default {
       profile: {},
       sex:"",
       old:0,
-      selected:[],
-      datalist: [],
+      selectedMonth:1,
+      selectedCalenderName:"",
+      month:[],
+      calenderName: [],
       life_women:{},
       life_men:{},
       login:false,
@@ -48,7 +64,9 @@ export default {
         this.old = data.old;
         this.sex = data.sex;
         console.log(data.data)
-        this.datalist = Object.keys(data.data[0]);
+        this.month = Object.keys(data.data[0]);
+        this.calenderName = Object.keys(data.data[0][1]);
+        
       });
     },
     getLifeExpectancy(){
@@ -77,7 +95,7 @@ export default {
   box-shadow: 0 18px 200px -60px rgba(0, 0, 0, 0.981);
   border-radius: 50px; /* 角の尖り具合 */
   width: 600px;
-  height: 700px;
+  height: 1000px;
   /* position:fixed; */
   backdrop-filter: blur(15px); /* ぼかし */
   border: 2px solid #ffffff00;
