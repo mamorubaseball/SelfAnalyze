@@ -10,7 +10,7 @@ class AccountsSerializer(serializers.ModelSerializer):
         model=Accounts
         fields='__all__'
         # json で出力するフィールドを指定することも可能
-        # fields = ('id','user_name', 'birth_day','age','created_at')
+        # fields = ('user','old','sex','data')
 
     #パターン1
     # def create(self, validated_data):

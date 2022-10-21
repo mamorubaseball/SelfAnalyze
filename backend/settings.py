@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework', # 追加
     'webpack_loader', #追加
     'corsheaders',#追加
+    'django_filters',#追加
     ]
 
 MIDDLEWARE = [
@@ -143,6 +144,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK={
     'PAGE_SIZE':4,
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',) 
 }
 
 

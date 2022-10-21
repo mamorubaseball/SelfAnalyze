@@ -5,5 +5,4 @@ urlpatterns = [
     path("user/", views.ListView.as_view(), name="user"),
     path("user/<int:pk>", views.DetailView.as_view(), name="detail"),
     path("lifeexpectancy/", views. ListViewLife.as_view(), name="life"),
-
 ]
