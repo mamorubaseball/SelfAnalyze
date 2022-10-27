@@ -15,9 +15,10 @@ class AccountForm(forms.ModelForm):
         # フィールド名指定
         labels = {'username':"ユーザーID",'email':"メール"}
 
+# 新規登録フォーム
 class AddAccountForm(forms.ModelForm):
     class Meta():
         # モデルクラスを指定
         model = Accounts
-        fields = ('old','sex')
-        labels = {'old':"年齢",'sex':"性別"}
+        fields = ('old','sex','account_image')
+        labels = {'old':"年齢",'sex':"性別",'account_image':"プロフィール画像"}

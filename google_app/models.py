@@ -20,8 +20,8 @@ class Accounts(models.Model):
     sex = models.CharField(default = "mamoru",max_length=10)
     data = models.JSONField(default = {"name":"mamoru"})
     datalist = models.JSONField(default = {"list":["list"]})
-    # calendarlist = ListCharField(models.CharField(max_length=15),size=10, max_length=(15*11))
-
+    account_image = models.ImageField(blank=True)
+    
     class Meta:
        app_label = 'google_app'
 
