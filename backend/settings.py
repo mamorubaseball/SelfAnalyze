@@ -57,6 +57,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'backend.urls'
 
+#画像ファイル配置
+STATIC_URL = '/static/'
+STATIC_ROOT = 'static'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
