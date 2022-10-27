@@ -1,6 +1,6 @@
 <template>
   <div class="profile">
-    <img :src="require('@/assets/mamoru.png')" class="profile-card-image" />
+    <img :src="account_image_src" class="profile-card-image" />
     <div class="profile-card-desc">
       <h1>残りの人生</h1>
       <h2>59年1ヶ月10日</h2>
@@ -45,6 +45,7 @@ export default {
       profile: {},
       sex: "",
       old: 0,
+      account_image_src:"",
       selectedMonth: 1,
       selectedCalenderName: "",
       month: [],
@@ -95,6 +96,7 @@ export default {
         this.profile = data.data[0];
         this.old = data.old;
         this.sex = data.sex;
+        this.account_image_src = data.account_image;
         this.month = Object.keys(data.data[0]);
         this.calenderName = Object.keys(data.data[0][1]);
         this.calenderNumber = this.calenderName.length;

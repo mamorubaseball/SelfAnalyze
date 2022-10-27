@@ -171,6 +171,10 @@ class  AccountRegistration(TemplateView):
             add_account = self.params["add_account_form"].save(commit=False)
             # AccountForm & AddAccountForm 1vs1 紐付け
             add_account.user = account
+
+            # 画像アップロード有無検証
+            if 'account_image' in request.FILES:
+                add_account.account_image = request.FILES['account_image']
             
             # モデル保存
             add_account.save()
