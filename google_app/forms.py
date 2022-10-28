@@ -13,7 +13,7 @@ class AccountForm(forms.ModelForm):
         # フィールド指定
         fields = ('username','email','password')
         # フィールド名指定
-        labels = {'username':"ユーザーID",'email':"メール"}
+        labels = {'username':"ユーザーID",'email':"メール",'password':"パスワード"}
 
 # 新規登録フォーム
 class AddAccountForm(forms.ModelForm):
