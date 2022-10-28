@@ -8,7 +8,7 @@ module.exports = {
   context: __dirname,
 
   entry: {
-    main: "./assets/js/main.js" // エントリ名とエントリポイント
+    main: "./src/main.js" // エントリ名とエントリポイント
   },
 
   output: {

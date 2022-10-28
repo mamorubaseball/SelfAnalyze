@@ -6,26 +6,6 @@
     <title>自己分析ツール</title>
 </head>
 <body>
-
-    <!-- <h2>登録するメールアドレスを入力してください</h2> -->
-    <!-- <form action="GET">
-        <input type="text" name="mail">
-        <button type="submit">送信</button>
-    </form> -->
-
-    <form method="post">
-        {% csrf_token %}   
-        <button type="submit" name="calender">Googleカレンダー</button>
-    </form>
-    <h1>自己分析ツール</h1>
-    <!-- <div>
-        {% if lists %}
-        <p>あなたの人生で使った時間</p>
-        {% for key,val in lists.items %}
-        <p>{{ key }}:{{ val }}時間</p><br>
-        {% endfor %}
-        {% endif %}
-    </div> -->
     <div id="app"></div>
 {% render_bundle 'app'  %}
 </body>

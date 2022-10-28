@@ -1,0 +1,20 @@
+{% load render_bundle from webpack_loader %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title></title>
+    <!-- <link rel="stylesheet" href='{% static "google_app/css/style.css" %}'/> -->
+
+</head>
+<body>
+<div id="app"></div>
+<p> ログアウトは<a href="{% url 'google_app:Logout' %}">こちら</a>
+{% render_bundle 'app'  %}
+ </p>
+
+ <!-- refer to JS that was compiled by Laravel Mix -->
+<!-- <script type="text/javascript" src="{% static 'build/google_app.js' %}"></script> -->
+</body>
+</html>

@@ -39,6 +39,7 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    height: 1500px;
   /* 背景 */
     background-image: url("assets/profile_bg.png");
     background-size: cover;
