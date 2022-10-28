@@ -16,8 +16,14 @@ class Accounts(models.Model):
     #ユーザー認証のインスタンス
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+    GENDER_CHOICES = (
+    (1, '男性'),
+    (2, '女性'),
+    (3, 'Xジェンダー'),
+    )
+
     old = models.IntegerField(default = 0)
-    sex = models.CharField(default = "mamoru",max_length=10)
+    sex = models.IntegerField(choices=GENDER_CHOICES)
     data = models.JSONField(default = {"name":"mamoru"})
     datalist = models.JSONField(default = {"list":["list"]})
     account_image = models.ImageField(blank=True)
