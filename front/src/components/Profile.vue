@@ -16,26 +16,37 @@
       <!-- <p>{{ selectedCalenderName }}に使った時間</p>
       {{ profile[selectedMonth][selectedCalenderName]}}h -->
       <div v-if="isShow">
-        <bar-charts :chart-data="data" :options="options"> </bar-charts>
+            <v-row align="center" justify="center" class="ma-1">
+              <v-btn-toggle v-model="toggle_exclusive" mandatory>
+                <v-btn>
+                  <v-icon>mdi-chart-bar</v-icon>
+                </v-btn>
+                <v-btn>
+                  <v-icon>mdi-chart-bar</v-icon>
+                </v-btn>
+              </v-btn-toggle>
+            </v-row>
+        <div v-if="toggle_exclusive">
+          <bar-chart :chart-data="data" :options="options" justify="center"></bar-chart>
+        </div>
+        <div v-else>
+          <pie-chart :chart-data="data" :options="options"></pie-chart>
+        </div>
 
-        <!-- <v-select
-        v-model="selectedCalenderName"
-        :items="calenderName"
-        label="カレンダーの種類を選択"
-        outlined
-      ></v-select> -->
       </div>
     </div>
   </div>
 </template>
 <script>
 import { apiService } from "../../common/api.service";
-import BarCharts from "./Barcharts.vue";
+import BarChart from "./Barchart.vue";
+import PieChart from "./Piechart.vue";
 
 export default {
   name: "profile-vue",
   components: {
-    BarCharts,
+    BarChart,
+    PieChart,
   },
   props: {
     userId: String,
@@ -45,7 +56,7 @@ export default {
       profile: {},
       sex: "",
       old: 0,
-      account_image_src:"",
+      account_image_src: "",
       selectedMonth: 1,
       selectedCalenderName: "",
       month: [],
@@ -55,11 +66,12 @@ export default {
       life_men: {},
       login: false,
       isShow: false,
+      toggle_exclusive: undefined,
       data: {
         labels: [],
         datasets: [
           {
-            label: "Bar Dataset",
+            label: "グラフ",
             data: [],
             backgroundColor: [
               "rgba(255, 99, 132, 1)",
@@ -85,7 +97,10 @@ export default {
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
+        legend:{
+          display:true //グラフに表示される凡例を削除できます。
+        }
       },
     };
   },
@@ -109,8 +124,8 @@ export default {
       });
     },
     ChangeCalenderData(month) {
-      this.data.labels = []
-      this.data.datasets[0].data = []
+      this.data.labels = [];
+      this.data.datasets[0].data = [];
       for (var i = 0; i < this.calenderNumber; i++) {
         console.log(i);
         var calender_label = Object.keys(this.profile[month])[i];
@@ -129,6 +144,7 @@ export default {
   },
   mounted() {
     // this.data.labels = this.profile[1]
+    console.log(this.toggle_exclusive)
   },
 };
 </script>

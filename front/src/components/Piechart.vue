@@ -4,7 +4,7 @@ import { Pie  } from 'vue-chartjs';
 
 export default {
   extends: Pie,
-  name: 'BarCharts',
+  name: 'PieChart',
   props: ['chartData', 'options'],
   mounted () {
     console.log("this.data",this.chartData)
