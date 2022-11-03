@@ -20,6 +20,9 @@
 - バックエンドからGoogleカレンダーAPIを呼び出す。
 - フロントエンドから GoogleカレンダーAPI
 
+# ブランチ
+- main⇨本番環境(https://selfanalyze.herokuapp.com/)
+- develop⇨ローカル環境
 
 ## Vueバージョンの設定
 ```
