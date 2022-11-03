@@ -19,7 +19,7 @@
             <v-row align="center" justify="center" class="ma-1">
               <v-btn-toggle v-model="toggle_exclusive" mandatory>
                 <v-btn>
-                  <v-icon>mdi-chart-bar</v-icon>
+                  <v-icon>mdi-chart-pie</v-icon>
                 </v-btn>
                 <v-btn>
                   <v-icon>mdi-chart-bar</v-icon>
